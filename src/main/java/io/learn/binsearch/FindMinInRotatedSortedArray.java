@@ -13,7 +13,7 @@ public class FindMinInRotatedSortedArray {
             int mid = (low + (high - low) / 2);
             if (nums[mid]<=nums[high]) {
                 high = mid;
-            } else if (nums[mid] >= nums[high]) {
+            } else if (nums[mid] >= nums[low]) {
                 low = mid + 1;
             }
         }
