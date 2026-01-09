@@ -1,8 +1,10 @@
 package io.learn.linkedlist;
 
+import java.util.List;
+
 public class AddTwoNumbers {
     public static void main(String[] args) {
-
+        assert add(ListNode.buildLinkedList(List.of(9, 9, 9, 9)), ListNode.buildLinkedList(List.of(9, 8, 9, 6, 2))).toString().equals("8-8-9-6-3") : "Got wrong result";
     }
 
     private static ListNode add(ListNode node1, ListNode node2) {
@@ -27,9 +29,8 @@ public class AddTwoNumbers {
                 res = new ListNode(num);
                 sentinel.next = res;
             } else {
-                ListNode currentHead = sentinel.next;
-                sentinel.next = new ListNode(num);
-                sentinel.next.next = currentHead;
+                res.next = new ListNode(num);
+                res = res.next;
             }
             current1 = current1.next;
             current2 = current2.next;
@@ -39,25 +40,21 @@ public class AddTwoNumbers {
             int sum = carry + current1.val;
             int num = sum % 10;
             carry = sum / 10;
-            ListNode currentHead = sentinel.next;
-            sentinel.next = new ListNode(num);
-            sentinel.next.next = currentHead;
+            res.next = new ListNode(num);
             current1 = current1.next;
+            res = res.next;
         }
         while (current2 != null) {
             int sum = carry + current2.val;
             int num = sum % 10;
             carry = sum / 10;
-            ListNode currentHead = sentinel.next;
-            sentinel.next = new ListNode(num);
-            sentinel.next.next = currentHead;
+            res.next = new ListNode(num);
             current2 = current2.next;
+            res = res.next;
         }
 
         if (carry > 0) {
-            ListNode currentHead = sentinel.next;
-            sentinel.next = new ListNode(carry);
-            sentinel.next.next = currentHead;
+            res.next = new ListNode(carry);
         }
         return sentinel.next;
     }
