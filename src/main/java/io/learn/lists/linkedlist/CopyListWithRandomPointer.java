@@ -1,6 +1,6 @@
-package io.learn.linkedlist;
+package io.learn.lists.linkedlist;
 
-import io.learn.linkedlist.random.Node;
+import io.learn.lists.linkedlist.random.Node;
 
 import java.util.HashMap;
 import java.util.Map;
