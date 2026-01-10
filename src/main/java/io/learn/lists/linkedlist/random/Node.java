@@ -1,4 +1,4 @@
-package io.learn.linkedlist.random;
+package io.learn.lists.linkedlist.random;
 
 public class Node {
     public int val;

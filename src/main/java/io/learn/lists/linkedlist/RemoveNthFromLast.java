@@ -1,4 +1,4 @@
-package io.learn.linkedlist;
+package io.learn.lists.linkedlist;
 
 import java.util.List;
 
