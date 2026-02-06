@@ -4,6 +4,8 @@ import java.util.List;
 
 public class ReverseNodesInKGroup {
     public static void main(String[] args) {
+
+        int[][][] x = {{{1,2}, {3,4}}, {{5,6},{7,8}}, {{9,10},{11,12}}};
         assert reverseInKGroup(ListNode.buildLinkedList(List.of(1, 2, 3, 4, 5)), 2).toString().equals("2-1-4-3-5") : "Wrong result";
     }
 
