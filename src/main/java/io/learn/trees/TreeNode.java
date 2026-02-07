@@ -40,4 +40,25 @@ public class TreeNode {
         }
         return root;
     }
+
+    @Override
+    public String toString() {
+        Stack<TreeNode> stack = new Stack<>();
+        stack.add(this);
+        while (!stack.isEmpty()) {
+            int size = stack.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode current = stack.pop();
+                System.out.print(current.val+" ");
+                if (current.left != null) {
+                    stack.add(current.left);
+                }
+                if (current.right != null) {
+                    stack.add(current.right);
+                }
+            }
+            System.out.println();
+        }
+        return "";
+    }
 }
