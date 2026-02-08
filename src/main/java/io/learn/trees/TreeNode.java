@@ -1,7 +1,8 @@
 package io.learn.trees;
 
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Stack;
+import java.util.Queue;
 
 public class TreeNode {
     int val;
@@ -23,19 +24,19 @@ public class TreeNode {
         if (!nodeVals.isEmpty()) {
             root = new TreeNode(nodeVals.get(0));
         }
-        Stack<TreeNode> stack = new Stack<>();
-        stack.add(root);
-        for (int i = 1; i < nodeVals.size() && !stack.isEmpty(); i += 2) {
-            TreeNode current = stack.pop();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        for (int i = 1; i < nodeVals.size() && !queue.isEmpty(); i += 2) {
+            TreeNode current = queue.poll();
             current.left = new TreeNode(nodeVals.get(i));
             if (i + 1 < nodeVals.size()) {
                 current.right = new TreeNode(nodeVals.get(i + 1));
             }
             if (current.left.val != -1) {
-                stack.add(current.left);
+                queue.add(current.left);
             }
             if (current.right == null || current.right.val != -1) {
-                stack.add(current.right);
+                queue.add(current.right);
             }
         }
         return root;
@@ -43,22 +44,25 @@ public class TreeNode {
 
     @Override
     public String toString() {
-        Stack<TreeNode> stack = new Stack<>();
-        stack.add(this);
-        while (!stack.isEmpty()) {
-            int size = stack.size();
+        StringBuilder builder = new StringBuilder();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(this);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
             for (int i = 0; i < size; i++) {
-                TreeNode current = stack.pop();
-                System.out.print(current.val+" ");
-                if (current.left != null) {
-                    stack.add(current.left);
-                }
-                if (current.right != null) {
-                    stack.add(current.right);
+                TreeNode current = queue.poll();
+                if (current != null) {
+                    builder.append(current.val).append(" ");
+                    if (current.left != null) {
+                        queue.add(current.left);
+                    }
+                    if (current.right != null) {
+                        queue.add(current.right);
+                    }
                 }
             }
-            System.out.println();
+            builder.append(System.lineSeparator());
         }
-        return "";
+        return builder.toString();
     }
 }
