@@ -28,14 +28,16 @@ public class TreeNode {
         queue.add(root);
         for (int i = 1; i < nodeVals.size() && !queue.isEmpty(); i += 2) {
             TreeNode current = queue.poll();
-            current.left = new TreeNode(nodeVals.get(i));
-            if (i + 1 < nodeVals.size()) {
+            if (nodeVals.get(i) != -1) {
+                current.left = new TreeNode(nodeVals.get(i));
+            }
+            if (i + 1 < nodeVals.size() && nodeVals.get(i + 1) != -1) {
                 current.right = new TreeNode(nodeVals.get(i + 1));
             }
-            if (current.left.val != -1) {
+            if (current.left != null) {
                 queue.add(current.left);
             }
-            if (current.right == null || current.right.val != -1) {
+            if (current.right != null) {
                 queue.add(current.right);
             }
         }
@@ -59,6 +61,8 @@ public class TreeNode {
                     if (current.right != null) {
                         queue.add(current.right);
                     }
+                } else {
+                    builder.append(" null ");
                 }
             }
             builder.append(System.lineSeparator());
