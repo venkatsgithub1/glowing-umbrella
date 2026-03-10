@@ -21,8 +21,8 @@ public class KthSmallestBST {
         if (root != null) {
             if (result == -1) {
                 inorder(root.left, k);
-                counter++;
             }
+            counter++;
             if (counter == k) {
                 result = root.val;
             }
